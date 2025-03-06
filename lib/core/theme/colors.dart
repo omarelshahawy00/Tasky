@@ -112,44 +112,6 @@ class ColorsManager {
   static const Color SECONDARY_CHECK_MED_CARD_COLOR = Color(0xFFF1EAF3);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //  /// A dark version of the primary color used for the card background.
 //   static Color ketchUp = const Color(0xffFCE1E1);
 

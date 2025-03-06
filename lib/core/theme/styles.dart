@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class Styles {
   static const TextStyle displaySmallRegular = TextStyle(
     fontSize: 20,

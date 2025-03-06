@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class BigClipper extends CustomClipper<Path>{
+class BigClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     // TODO: implement getClip
@@ -12,11 +12,9 @@ class BigClipper extends CustomClipper<Path>{
     // TODO: implement shouldReclip
     throw UnimplementedError();
   }
-
 }
 
-
-class SmallClipper extends CustomClipper<Path>{
+class SmallClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     // TODO: implement getClip
@@ -28,5 +26,4 @@ class SmallClipper extends CustomClipper<Path>{
     // TODO: implement shouldReclip
     throw UnimplementedError();
   }
-
 }

@@ -6,7 +6,9 @@ class ThousandsSeparatorInputFormatter extends TextInputFormatter {
 
   @override
   TextEditingValue formatEditUpdate(
-      TextEditingValue oldValue, TextEditingValue newValue) {
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
     if (newValue.text.isEmpty) {
       return newValue.copyWith(text: '');
     }
@@ -19,7 +21,8 @@ class ThousandsSeparatorInputFormatter extends TextInputFormatter {
     return TextEditingValue(
       text: formattedValue,
       selection: TextSelection.collapsed(
-          offset: selectionIndex + (formattedValue.length - digitsOnly.length)),
+        offset: selectionIndex + (formattedValue.length - digitsOnly.length),
+      ),
     );
   }
 }

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:zbooma_to_do_app/core/theme/colors.dart';
@@ -21,21 +20,15 @@ ThemeData appThemeLight() {
     ),
     bottomSheetTheme: const BottomSheetThemeData(
       clipBehavior: Clip.antiAlias,
-      constraints: BoxConstraints(
-        maxWidth: double.infinity,
-      ),
+      constraints: BoxConstraints(maxWidth: double.infinity),
       showDragHandle: true,
       modalBarrierColor: Colors.transparent,
     ),
     checkboxTheme: CheckboxThemeData(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
     ),
     scaffoldBackgroundColor: ColorsManager.BACKGROUND_LIGHT,
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: ColorsManager.PRIMARY_COLOR,
-    ),
+    colorScheme: ColorScheme.fromSeed(seedColor: ColorsManager.PRIMARY_COLOR),
   );
 }
 
@@ -52,17 +45,13 @@ ThemeData appThemeDark() {
 
     bottomSheetTheme: const BottomSheetThemeData(
       clipBehavior: Clip.antiAlias,
-      constraints: BoxConstraints(
-        maxWidth: double.infinity,
-      ),
+      constraints: BoxConstraints(maxWidth: double.infinity),
       showDragHandle: true,
       modalBarrierColor: Colors.transparent,
     ),
 
     checkboxTheme: CheckboxThemeData(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(20),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
     ),
 
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -76,8 +65,6 @@ ThemeData appThemeDark() {
 
     scaffoldBackgroundColor: ColorsManager.BLACK_COLOR,
 
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: ColorsManager.PRIMARY_COLOR,
-    ),
+    colorScheme: ColorScheme.fromSeed(seedColor: ColorsManager.PRIMARY_COLOR),
   );
 }

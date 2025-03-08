@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:zbooma_to_do_app/core/routes/routes.dart';
 import 'package:zbooma_to_do_app/core/theme/colors.dart';
 import 'package:zbooma_to_do_app/core/theme/styles.dart';
 import 'package:zbooma_to_do_app/core/utilss/assets_manager.dart';
+import 'package:zbooma_to_do_app/core/widgets/custom_app_bar.dart';
+import 'package:zbooma_to_do_app/features/home/presentation/views/widget/custom_task_item.dart';
 
 class HomeViewBody extends StatelessWidget {
   const HomeViewBody({super.key});
@@ -13,12 +17,13 @@ class HomeViewBody extends StatelessWidget {
     final List<String> filters = ['All', 'Inprogress', 'Waiting', 'Finished'];
     return Scaffold(
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const CustomAppBar(),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Row(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16),
+          child: Column(
+            children: [
+              const CustomAppBar(),
+              Gap(24.h),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   const Text(
@@ -27,10 +32,8 @@ class HomeViewBody extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: SingleChildScrollView(
+              Gap(16.h),
+              SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: List.generate(
@@ -45,17 +48,26 @@ class HomeViewBody extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-            ListView.builder(
-              padding: const EdgeInsets.all(16.0),
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: 6,
-              itemBuilder: (context, index) {
-                return _buildTaskItem();
-              },
-            ),
-          ],
+              Gap(16.h),
+              ListView.builder(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemCount: 4,
+                itemBuilder: (context, index) {
+                  return CustomTaskItem(
+                    title: 'Grocery Shopping',
+                    date: '12,June,2023',
+                    description: 'Buy groceries for the week',
+                    imagePath: AssetsManager.taskIcon,
+                    priority: 'High',
+                    priorityColor: Colors.red,
+                    status: 'waiting',
+                    statusColor: Colors.red,
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
       floatingActionButton: Column(
@@ -63,15 +75,24 @@ class HomeViewBody extends StatelessWidget {
         children: [
           FloatingActionButton(
             heroTag: 'qr_button', // Unique hero tag
-            backgroundColor: Colors.purple.shade100,
-            child: const Icon(Icons.qr_code),
+            elevation: 0,
+            mini: true,
+            backgroundColor: ColorsManager.appPrimaryColor.withOpacity(0.1),
+            child: const Icon(
+              Icons.qr_code,
+              color: ColorsManager.appPrimaryColor,
+            ),
             onPressed: () {},
           ),
           const SizedBox(height: 10),
           FloatingActionButton(
+            backgroundColor: ColorsManager.appPrimaryColor,
+
             heroTag: 'add_button', // Unique hero tag
-            child: const Icon(Icons.add),
-            onPressed: () {},
+            child: const Icon(Icons.add, color: Colors.white),
+            onPressed: () {
+              Navigator.pushNamed(context, Routes.addNewTaskView);
+            },
           ),
         ],
       ),
@@ -79,7 +100,8 @@ class HomeViewBody extends StatelessWidget {
   }
 
   Widget _buildFilterButton(String text, {bool isActive = false}) {
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 300),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(24.r),
         color:
@@ -94,74 +116,6 @@ class HomeViewBody extends StatelessWidget {
           color: isActive ? Colors.white : const Color(0xff7c7c80),
         ),
       ),
-    );
-  }
-
-  Widget _buildTaskItem() {
-    return Card(
-      margin: EdgeInsets.symmetric(vertical: 8.0.h),
-      child: ListTile(
-        leading: Image.asset(AssetsManager.taskIcon),
-        title: Row(
-          children: [
-            const Text('Grocery Shopping', overflow: TextOverflow.ellipsis),
-            const Spacer(),
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 8.0.w),
-              width: 55.w,
-              height: 22.h,
-              decoration: BoxDecoration(
-                color: ColorsManager.appPrimaryColor,
-                borderRadius: BorderRadius.circular(5.0.r),
-              ),
-              child: Text(
-                'Inprogress',
-                style: Styles.textSMMedium.copyWith(color: Colors.white),
-              ),
-            ),
-          ],
-        ),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'This application is designed for',
-              overflow: TextOverflow.ellipsis,
-            ),
-            Row(
-              children: [
-                Icon(Icons.flag),
-                const Text('low', overflow: TextOverflow.ellipsis),
-                const Spacer(),
-
-                const Text('30/12/2022', overflow: TextOverflow.ellipsis),
-              ],
-            ),
-          ],
-        ),
-        trailing: const Icon(Icons.more_vert),
-      ),
-    );
-  }
-}
-
-class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: Colors.transparent,
-      elevation: 0,
-
-      title: const Text(
-        'Logo',
-        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-      ),
-      actions: [
-        IconButton(icon: const Icon(Icons.person_outline), onPressed: () {}),
-        IconButton(icon: const Icon(Icons.logout), onPressed: () {}),
-      ],
     );
   }
 }

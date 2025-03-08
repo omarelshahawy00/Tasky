@@ -5,4 +5,5 @@ class AssetsManager {
   static const String onboarding3 = 'assets/images/fram.png';
   static const String logo = 'assets/icons/logo.svg';
   static const String taskIcon = 'assets/icons/taskicon.png';
+  static const String taskImage = 'assets/images/task_image.png';
 }

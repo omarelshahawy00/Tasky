@@ -57,11 +57,23 @@ class CustomTaskItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               // Task Image
-              Image.asset(
+              Image.network(
                 imagePath,
-                width: 64.w,
-                height: 64.h,
+                width: 64.r,
+                height: 64.r,
                 fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return SizedBox(
+                    width: 64.r,
+                    height: 64.r,
+
+                    child: Icon(
+                      Icons.image,
+                      size: 64.r,
+                      color: Colors.grey.shade400,
+                    ),
+                  );
+                },
               ),
               SizedBox(width: 10.w),
 
@@ -136,7 +148,9 @@ class CustomTaskItem extends StatelessWidget {
                             ),
                           ],
                         ),
+
                         Text(
+                          maxLines: 1,
                           date,
                           style: Styles.textMDRegular.copyWith(
                             color: Colors.grey.shade600,

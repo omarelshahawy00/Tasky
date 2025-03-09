@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:intl/intl.dart';
 import 'package:zbooma_to_do_app/core/routes/routes.dart';
 import 'package:zbooma_to_do_app/core/theme/colors.dart';
 import 'package:zbooma_to_do_app/core/theme/styles.dart';
-import 'package:zbooma_to_do_app/core/utilss/assets_manager.dart';
+import 'package:zbooma_to_do_app/core/utils/assets_manager.dart';
 import 'package:zbooma_to_do_app/core/widgets/custom_app_bar.dart';
+import 'package:zbooma_to_do_app/features/home/presentation/manager/get_task_cubit/get_task_cubit.dart';
 import 'package:zbooma_to_do_app/features/home/presentation/views/widget/custom_task_item.dart';
 
 class HomeViewBody extends StatelessWidget {
@@ -49,21 +52,31 @@ class HomeViewBody extends StatelessWidget {
                 ),
               ),
               Gap(16.h),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: 4,
-                itemBuilder: (context, index) {
-                  return CustomTaskItem(
-                    title: 'Grocery Shopping',
-                    date: '12,June,2023',
-                    description: 'Buy groceries for the week',
-                    imagePath: AssetsManager.taskIcon,
-                    priority: 'High',
-                    priorityColor: Colors.red,
-                    status: 'waiting',
-                    statusColor: Colors.red,
-                  );
+              BlocBuilder<GetTaskCubit, GetTaskState>(
+                builder: (context, state) {
+                  if (state is GetTaskSuccess) {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: state.tasks.length,
+                      itemBuilder: (context, index) {
+                        return CustomTaskItem(
+                          title: state.tasks[index].title!,
+                          date: formatDate(state.tasks[index].createdAt!),
+                          description: state.tasks[index].description!,
+                          imagePath: state.tasks[index].image!,
+                          priority: state.tasks[index].priority!,
+                          priorityColor: Colors.red,
+                          status: state.tasks[index].status!,
+                          statusColor: Colors.red,
+                        );
+                      },
+                    );
+                  } else if (state is GetTaskError) {
+                    return Center(child: Text(state.errMessage));
+                  } else {
+                    return const Center(child: CircularProgressIndicator());
+                  }
                 },
               ),
             ],
@@ -117,5 +130,9 @@ class HomeViewBody extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String formatDate(DateTime date) {
+    return DateFormat('yyyy-MM-dd').format(date);
   }
 }

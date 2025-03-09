@@ -6,10 +6,10 @@ import 'package:zbooma_to_do_app/core/di/di.dart';
 import 'package:zbooma_to_do_app/core/helpers/custom_bloc_observer.dart';
 import 'package:zbooma_to_do_app/core/routes/routes.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  setupServiceLocator();
+  await setupServiceLocator();
   Bloc.observer = CustomBlocObserver();
   runApp(const Tasky());
 }

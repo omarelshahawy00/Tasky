@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 import 'package:zbooma_to_do_app/core/theme/colors.dart';
-import 'package:zbooma_to_do_app/core/utilss/assets_manager.dart';
+import 'package:zbooma_to_do_app/core/utils/assets_manager.dart';
 
 import '../routes/routes.dart';
 

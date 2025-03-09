@@ -2,12 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:zbooma_to_do_app/core/routes/routes.dart';
 import 'package:zbooma_to_do_app/core/theme/colors.dart' show ColorsManager;
 import 'package:zbooma_to_do_app/core/theme/styles.dart' show Styles;
-import 'package:zbooma_to_do_app/core/utilss/assets_manager.dart';
+import 'package:zbooma_to_do_app/core/utils/assets_manager.dart';
 import 'package:zbooma_to_do_app/core/widgets/custom_button.dart';
 import 'package:zbooma_to_do_app/core/widgets/default_text_field.dart';
-import 'package:zbooma_to_do_app/features/auth/data/models/signup_request_model.dart';
+import 'package:zbooma_to_do_app/features/auth/data/models/signup_models/signup_request_model.dart';
 import 'package:zbooma_to_do_app/features/auth/signup/presentation/manager/signup_cubit/signup_cubit.dart';
 import 'package:zbooma_to_do_app/features/auth/signup/presentation/views/widgets/experience_drop_down_list.dart';
 import 'package:zbooma_to_do_app/features/auth/signup/presentation/views/widgets/phone_text_field.dart';
@@ -52,6 +53,7 @@ class _SignupViewBodyState extends State<SignupViewBody> {
           ScaffoldMessenger.of(
             context,
           ).showSnackBar(SnackBar(content: Text("Signup Successful!")));
+          Navigator.pop(context);
         } else if (state is SignupError) {
           ScaffoldMessenger.of(
             context,

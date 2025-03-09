@@ -85,7 +85,7 @@ class DefaultTextField extends StatelessWidget {
             maxWidth: 50,
           ),
           hintText: hintText,
-          prefixIconColor: ColorsManager.TEXT_GREY_COLOR,
+          prefixIconColor: ColorsManager.appBoardersColor,
           hintStyle:
               hintStyle ??
               Styles.displayMediumMedium.copyWith(
@@ -100,7 +100,7 @@ class DefaultTextField extends StatelessWidget {
           suffixIcon: suffixIcon,
           suffixText: suffixText,
           suffix: suffix,
-          fillColor: fillColor ?? ColorsManager.neutralGrayWhite,
+          fillColor: fillColor ?? Colors.white,
           filled: true,
           constraints: const BoxConstraints(),
           enabledBorder: customOutlinedBorder(
@@ -109,9 +109,9 @@ class DefaultTextField extends StatelessWidget {
           focusedBorder: customOutlinedBorder(
             color: ColorsManager.appBoardersColor,
           ),
-          errorBorder: customOutlinedBorder(color: ColorsManager.dangerRed500),
+          errorBorder: customOutlinedBorder(color: Colors.red),
           focusedErrorBorder: customOutlinedBorder(
-            color: ColorsManager.dangerRed500,
+            color: Colors.red,
           ),
           contentPadding: EdgeInsets.symmetric(vertical: contentPadding ?? 16),
         ),

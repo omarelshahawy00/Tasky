@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:zbooma_to_do_app/features/auth/data/models/signup_request_model.dart';
-import 'package:zbooma_to_do_app/features/auth/data/models/signup_response_model.dart'
+import 'package:zbooma_to_do_app/features/auth/data/models/signup_models/signup_request_model.dart';
+import 'package:zbooma_to_do_app/features/auth/data/models/signup_models/signup_response_model.dart'
     show SignupResponseModel;
 import 'package:zbooma_to_do_app/features/auth/data/repo/auth_repo.dart';
 
